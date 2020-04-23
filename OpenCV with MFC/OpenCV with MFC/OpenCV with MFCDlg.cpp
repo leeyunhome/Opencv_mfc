@@ -113,6 +113,7 @@ BOOL COpenCVwithMFCDlg::OnInitDialog()
 	capture->set(CAP_PROP_FRAME_WIDTH, 320);
 	capture->set(CAP_PROP_FRAME_HEIGHT, 240);
 
+
 	SetTimer(1000, 30, NULL);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -188,10 +189,14 @@ void COpenCVwithMFCDlg::OnTimer(UINT_PTR nIDEvent)
 
 	//여기에서는 그레이스케일 이미지로 변환합니다.
 	cvtColor(mat_frame, mat_frame, COLOR_BGR2GRAY);
-
+	
 
 
 	//화면에 보여주기 위한 처리입니다.
+	//String label = "hello world";
+	double framewidth = capture->get(CAP_PROP_FRAME_WIDTH);
+
+	putText(mat_frame, "helloworld", Point(50, 50 - 1), FONT_HERSHEY_DUPLEX, 0.8, Scalar(0, 255, 0));
 	int bpp = 8 * mat_frame.elemSize();
 	assert((bpp == 8 || bpp == 24 || bpp == 32));
 
@@ -271,6 +276,9 @@ void COpenCVwithMFCDlg::OnTimer(UINT_PTR nIDEvent)
 			0, 0, winSize.width, winSize.height,
 			0, 0, 0, mat_temp.rows,
 			mat_temp.data, bitInfo, DIB_RGB_COLORS);
+
+		//SetDlgItemText(IDC_STATIC, L"hello");
+
 	}
 	else
 	{
