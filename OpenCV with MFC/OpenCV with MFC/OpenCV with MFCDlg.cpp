@@ -194,9 +194,15 @@ void COpenCVwithMFCDlg::OnTimer(UINT_PTR nIDEvent)
 
 	//화면에 보여주기 위한 처리입니다.
 	//String label = "hello world";
+
 	double framewidth = capture->get(CAP_PROP_FRAME_WIDTH);
 
-	putText(mat_frame, "helloworld", Point(50, 50 - 1), FONT_HERSHEY_DUPLEX, 0.8, Scalar(0, 255, 0));
+	CString str;
+	str.Format(L"width : %d", (int)framewidth);
+	SetDlgItemText(IDC_STATIC, str);
+
+
+	putText(mat_frame, "MFC opencv", Point(50, 70 - 1), FONT_HERSHEY_PLAIN, 0.8, Scalar(255, 0, 0));
 	int bpp = 8 * mat_frame.elemSize();
 	assert((bpp == 8 || bpp == 24 || bpp == 32));
 
@@ -277,7 +283,6 @@ void COpenCVwithMFCDlg::OnTimer(UINT_PTR nIDEvent)
 			0, 0, 0, mat_temp.rows,
 			mat_temp.data, bitInfo, DIB_RGB_COLORS);
 
-		//SetDlgItemText(IDC_STATIC, L"hello");
 
 	}
 	else
