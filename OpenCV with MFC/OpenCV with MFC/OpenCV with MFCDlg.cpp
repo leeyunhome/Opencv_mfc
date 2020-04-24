@@ -195,14 +195,34 @@ void COpenCVwithMFCDlg::OnTimer(UINT_PTR nIDEvent)
 	//화면에 보여주기 위한 처리입니다.
 	//String label = "hello world";
 
-	double framewidth = capture->get(CAP_PROP_FRAME_WIDTH);
+	double framewidth = cvRound(capture->get(CAP_PROP_FRAME_WIDTH));
+	double fps = cvRound(capture->get(CAP_PROP_FPS));
+	double exposure = cvRound(capture->get(CAP_PROP_EXPOSURE));
+	double gain = cvRound(capture->get(CAP_PROP_GAIN));
+	double codec = cvRound(capture->get(CAP_PROP_FOURCC));
 
 	CString str;
 	str.Format(L"width : %d", (int)framewidth);
-	SetDlgItemText(IDC_STATIC, str);
+	CString str2;
+	str2.Format(L"frame : %f", fps);
+	CString str3;
+	str3.Format(L"exposure : %f", exposure);
+	CString str4;
+	str4.Format(L"gain : %f", gain);
+	CString str5;
+	str5.Format(L"codec : %lf", codec);
+
+	CT2CA pszConvertedAnsiString(str5);
+	std::string s(pszConvertedAnsiString);
+
+	SetDlgItemText(IDC_EDIT2, str);
+	SetDlgItemText(IDC_EDIT1, str2);
+	SetDlgItemText(IDC_EDIT3, str3);
+	SetDlgItemText(IDC_EDIT4, str4);
+	SetDlgItemText(IDC_EDIT5, str5);
 
 
-	putText(mat_frame, "MFC opencv", Point(50, 70 - 1), FONT_HERSHEY_PLAIN, 0.8, Scalar(255, 0, 0));
+	putText(mat_frame, s, Point(50, 70 - 1), FONT_HERSHEY_PLAIN, 0.8, Scalar(255, 0, 0));
 	int bpp = 8 * mat_frame.elemSize();
 	assert((bpp == 8 || bpp == 24 || bpp == 32));
 
