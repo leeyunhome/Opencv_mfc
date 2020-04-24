@@ -10,3 +10,6 @@ Add putText in Video and static_text in dialog.
 
 Add VideoCaptureProperties
 ![mfc_opencv_codec](https://user-images.githubusercontent.com/59910227/80200562-c4cbea00-865d-11ea-8624-ef84299b9600.png)
+
+Add face, eye classifier
+![eye_classifier](https://user-images.githubusercontent.com/59910227/80208442-31011a80-866b-11ea-918a-87c29ce98418.png)
