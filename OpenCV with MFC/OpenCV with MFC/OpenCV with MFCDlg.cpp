@@ -221,18 +221,28 @@ void COpenCVwithMFCDlg::OnTimer(UINT_PTR nIDEvent)
 	SetDlgItemText(IDC_EDIT4, str4);
 	SetDlgItemText(IDC_EDIT5, str5);
 
-	CascadeClassifier classifier("haarcascade_frontalface_default.xml");
+	CascadeClassifier face_classifier("haarcascade_frontalface_default.xml");
+	CascadeClassifier eye_classifier("haarcascade_eye.xml");
 
-	if (classifier.empty()) {
+	if (face_classifier.empty() || eye_classifier.empty()) {
 		std::cerr << "XML load failed!" << std::endl;
 		return;
 	}
 
 	std::vector<Rect> faces;
-	classifier.detectMultiScale(mat_frame, faces);
+	face_classifier.detectMultiScale(mat_frame, faces);
 
-	for (Rect rc : faces) {
-		rectangle(mat_frame, rc, Scalar(255, 0, 0), 2);
+	for (Rect face : faces) {
+		rectangle(mat_frame, face, Scalar(255, 0, 0), 2);
+
+		Mat faceROI = mat_frame(face);
+		std::vector<Rect> eyes;
+		eye_classifier.detectMultiScale(faceROI, eyes);
+
+		for (Rect eye : eyes) {
+			Point center(eye.x + eye.width / 2, eye.y + eye.height / 2);
+			circle(faceROI, center, eye.width / 2, Scalar(255, 0, 0), 2, LINE_AA);
+		}
 	}
 
 	putText(mat_frame, s, Point(10, 20 - 1), FONT_HERSHEY_PLAIN, 0.8, Scalar(255, 0, 0));
