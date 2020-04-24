@@ -231,9 +231,14 @@ void COpenCVwithMFCDlg::OnTimer(UINT_PTR nIDEvent)
 
 	std::vector<Rect> faces;
 	face_classifier.detectMultiScale(mat_frame, faces);
+	CString str6;
+	CString str7;
 
 	for (Rect face : faces) {
 		rectangle(mat_frame, face, Scalar(255, 0, 0), 2);
+
+		str7.Format(L"face : %d, %d", face.width, face.height);
+
 
 		Mat faceROI = mat_frame(face);
 		std::vector<Rect> eyes;
@@ -242,8 +247,13 @@ void COpenCVwithMFCDlg::OnTimer(UINT_PTR nIDEvent)
 		for (Rect eye : eyes) {
 			Point center(eye.x + eye.width / 2, eye.y + eye.height / 2);
 			circle(faceROI, center, eye.width / 2, Scalar(255, 0, 0), 2, LINE_AA);
+
+			str6.Format(L"eye : %d, %d", eye.width, eye.height);
+
 		}
 	}
+	SetDlgItemText(IDC_EDIT6, str6);
+	SetDlgItemText(IDC_EDIT7, str7);
 
 	putText(mat_frame, s, Point(10, 20 - 1), FONT_HERSHEY_PLAIN, 0.8, Scalar(255, 0, 0));
 	int bpp = 8 * mat_frame.elemSize();
