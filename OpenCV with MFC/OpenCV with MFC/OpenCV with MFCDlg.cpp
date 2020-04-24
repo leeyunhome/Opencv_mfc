@@ -221,8 +221,21 @@ void COpenCVwithMFCDlg::OnTimer(UINT_PTR nIDEvent)
 	SetDlgItemText(IDC_EDIT4, str4);
 	SetDlgItemText(IDC_EDIT5, str5);
 
+	CascadeClassifier classifier("haarcascade_frontalface_default.xml");
 
-	putText(mat_frame, s, Point(50, 70 - 1), FONT_HERSHEY_PLAIN, 0.8, Scalar(255, 0, 0));
+	if (classifier.empty()) {
+		std::cerr << "XML load failed!" << std::endl;
+		return;
+	}
+
+	std::vector<Rect> faces;
+	classifier.detectMultiScale(mat_frame, faces);
+
+	for (Rect rc : faces) {
+		rectangle(mat_frame, rc, Scalar(255, 0, 0), 2);
+	}
+
+	putText(mat_frame, s, Point(10, 20 - 1), FONT_HERSHEY_PLAIN, 0.8, Scalar(255, 0, 0));
 	int bpp = 8 * mat_frame.elemSize();
 	assert((bpp == 8 || bpp == 24 || bpp == 32));
 
@@ -335,4 +348,9 @@ void COpenCVwithMFCDlg::OnTimer(UINT_PTR nIDEvent)
 	cimage_mfc.Destroy();
 
 	CDialogEx::OnTimer(nIDEvent);
+}
+
+void COpenCVwithMFCDlg::detect_face()
+{
+	//Mat src = 
 }

@@ -39,4 +39,6 @@ public:
 	VideoCapture* capture;
 	Mat mat_frame;
 	CImage cimage_mfc;
+
+	void detect_face();
 };
