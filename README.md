@@ -3,15 +3,15 @@
 **테스트 샘플 요구사항 도식화**
 ![테스트 샘플 요구사항 도식화](https://user-images.githubusercontent.com/59910227/80276329-0ffc0080-8723-11ea-9c47-e114f69f1354.png)
 
-최종 결과물 다운로드 주소
+**최종 결과물 다운로드 주소**
 https://drive.google.com/open?id=1FGnSF6A12bFyOW1itwSPyTcSREF8APCP
 
-*개발환경*
+**개발환경**
 IDE: Visual Studio 2019  
 언어: c++  
 라이브러리: MFC, OPENCV 4.0 (precompiled)
 
-참고자료:
+**참고자료**
 https://webnautes.tistory.com/824             OpenCV와 MFC 연동해서 웹캠 영상을 출력하기  
 https://blog.naver.com/tipsware/221307415937  MFC 강좌  
 https://thebook.io/006939/ch13/02-11/         OpenCV4로 배우는 컴퓨터 비전과 머신러닝
