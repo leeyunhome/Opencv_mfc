@@ -3,6 +3,9 @@
 테스트 샘플 요구사항 도식화
 ![테스트 샘플 요구사항 도식화](https://user-images.githubusercontent.com/59910227/80276329-0ffc0080-8723-11ea-9c47-e114f69f1354.png)
 
+최종 결과물 다운로드 주소
+https://drive.google.com/open?id=1FGnSF6A12bFyOW1itwSPyTcSREF8APCP
+
 initial commit
 ![opencv_with_mfc](https://user-images.githubusercontent.com/59910227/80069598-93c7b880-857c-11ea-9b41-91991d1626b2.png)
 
@@ -26,3 +29,4 @@ Add face, eye classifier
 review and release build
 ![face_eye4](https://user-images.githubusercontent.com/59910227/80275909-96aede80-871f-11ea-91bd-186f90f6b4be.png)
 ![face_eye5](https://user-images.githubusercontent.com/59910227/80275912-9878a200-871f-11ea-83e7-cf98e851aca5.png)
+
