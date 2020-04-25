@@ -11,7 +11,7 @@ IDE: Visual Studio 2019
 언어: c++  
 라이브러리: MFC, OPENCV 4.0 (precompiled)
 
-**참고자료**
+**참고자료**  
 https://webnautes.tistory.com/824             OpenCV와 MFC 연동해서 웹캠 영상을 출력하기  
 https://blog.naver.com/tipsware/221307415937  MFC 강좌  
 https://thebook.io/006939/ch13/02-11/         OpenCV4로 배우는 컴퓨터 비전과 머신러닝
