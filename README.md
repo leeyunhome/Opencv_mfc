@@ -6,6 +6,16 @@
 최종 결과물 다운로드 주소
 https://drive.google.com/open?id=1FGnSF6A12bFyOW1itwSPyTcSREF8APCP
 
+개발환경
+IDE: Visual Studio 2019
+언어: c++
+라이브러리: MFC, OPENCV 4.0 (precompiled)
+
+참고자료:
+https://webnautes.tistory.com/824             OpenCV와 MFC 연동해서 웹캠 영상을 출력하기
+https://blog.naver.com/tipsware/221307415937  MFC 강좌
+https://thebook.io/006939/ch13/02-11/         OpenCV4로 배우는 컴퓨터 비전과 머신러닝
+
 initial commit
 ![opencv_with_mfc](https://user-images.githubusercontent.com/59910227/80069598-93c7b880-857c-11ea-9b41-91991d1626b2.png)
 
