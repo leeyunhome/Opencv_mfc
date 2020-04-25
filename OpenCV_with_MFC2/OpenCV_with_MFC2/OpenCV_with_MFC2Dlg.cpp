@@ -188,9 +188,46 @@ void COpenCVwithMFC2Dlg::OnTimer(UINT_PTR nIDEvent)
 	//이곳에 OpenCV 함수들을 적용합니다.
 
 	//여기에서는 그레이스케일 이미지로 변환합니다.
-	cvtColor(mat_frame, mat_frame, COLOR_BGR2GRAY);
+	cvtColor(mat_frame, mat_frame, COLOR_BGR2BGRA);
 
+	double framewidth = cvRound(capture->get(CAP_PROP_FRAME_WIDTH));
+	double fps = cvRound(capture->get(CAP_PROP_FPS));
+	double exposure = cvRound(capture->get(CAP_PROP_EXPOSURE));
+	double gain = cvRound(capture->get(CAP_PROP_GAIN));
+	double codec = cvRound(capture->get(CAP_PROP_FOURCC));
 
+	CString str;
+	CString str2;
+
+	CascadeClassifier face_classifier("haarcascade_frontalface_default.xml");
+	CascadeClassifier eye_classifier("haarcascade_eye.xml");
+
+	if (face_classifier.empty() || eye_classifier.empty()) {
+		std::cerr << "XML load failed!" << std::endl;
+		return;
+	}
+
+	std::vector<Rect> faces;
+	face_classifier.detectMultiScale(mat_frame, faces);
+
+	for (Rect face : faces) {
+		rectangle(mat_frame, face, Scalar(255, 0, 255), 2);
+		str.Format(L"face : %d, %d", face.x, face.y);
+
+		Mat faceROI = mat_frame(face);// mat_frame에 face를 넣어 초기화
+		std::vector<Rect> eyes;
+		eye_classifier.detectMultiScale(faceROI, eyes);
+
+		for (Rect eye : eyes) {
+			Point center(eye.x + eye.width / 2, eye.y + eye.height / 2);
+			circle(faceROI, center, eye.width / 2, Scalar(255, 0, 0), 2, LINE_AA);
+			str2.Format(L"eye : %d, %d", eye.x, eye.y);
+
+		}
+	}
+
+	SetDlgItemText(IDC_EDIT2, str);
+	SetDlgItemText(IDC_EDIT1, str2);
 
 	//화면에 보여주기 위한 처리입니다.
 	int bpp = 8 * mat_frame.elemSize();
@@ -211,7 +248,7 @@ void COpenCVwithMFC2Dlg::OnTimer(UINT_PTR nIDEvent)
 		border = 4 - (mat_frame.cols % 4);
 	}
 
-
+	
 
 	Mat mat_temp;
 	if (border > 0 || mat_frame.isContinuous() == false)
