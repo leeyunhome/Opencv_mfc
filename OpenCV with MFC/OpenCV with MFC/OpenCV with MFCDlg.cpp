@@ -255,6 +255,40 @@ void COpenCVwithMFCDlg::OnTimer(UINT_PTR nIDEvent)
 	SetDlgItemText(IDC_EDIT6, str6);
 	SetDlgItemText(IDC_EDIT7, str7);
 
+	// dnnface
+	/*const String model = "res10_300x300_ssd_iter_140000_fp16.caffemodel";
+	const String config = "deploy.prototxt";
+
+	Net net = readNet(model, config);
+
+	if (net.empty()) {
+		std::cerr << "Net open failed!" << std::endl;
+	}
+
+	Mat blob = blobFromImage(mat_frame, 1, Size(300, 300), Scalar(104, 177, 123));
+	net.setInput(blob);
+	Mat res = net.forward();
+
+	Mat detect(res.size[2], res.size[3], CV_32FC1, res.ptr<float>());
+
+	for (int i = 0; i < detect.rows; i++) {
+		float confidence = detect.at<float>(i, 2);
+		if (confidence < 0.5)
+			break;
+
+		int x1 = cvRound(detect.at<float>(i, 3) * mat_frame.cols);
+		int y1 = cvRound(detect.at<float>(i, 4) * mat_frame.rows);
+		int x2 = cvRound(detect.at<float>(i, 5) * mat_frame.cols);
+		int y2 = cvRound(detect.at<float>(i, 6) * mat_frame.rows);
+
+		rectangle(mat_frame, Rect(Point(x1, y1), Point(x2, y2)), Scalar(0, 255, 0));
+
+		String label = format("Face: %4.3f", confidence);
+		putText(mat_frame, label, Point(x1, y1 - 1), FONT_HERSHEY_SIMPLEX, 0.8,
+			Scalar(0, 255, 0));
+
+	}*/
+
 	putText(mat_frame, s, Point(10, 20 - 1), FONT_HERSHEY_PLAIN, 0.8, Scalar(255, 0, 0));
 	int bpp = 8 * mat_frame.elemSize();
 	assert((bpp == 8 || bpp == 24 || bpp == 32));
