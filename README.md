@@ -40,8 +40,9 @@ review and release build
 ![face_eye4](https://user-images.githubusercontent.com/59910227/80275909-96aede80-871f-11ea-91bd-186f90f6b4be.png)
 ![face_eye5](https://user-images.githubusercontent.com/59910227/80275912-9878a200-871f-11ea-83e7-cf98e851aca5.png)
 
-추가로 해본 작업입니다.
-딥러닝을 이용한 얼굴 검출 방법 테스트
+추가로 해본 작업입니다.  
+
+딥러닝을 이용한 얼굴 검출 방법 테스트  
 https://github.com/leeyunhome/CV_test
 
 감사합니다.
