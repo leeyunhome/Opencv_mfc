@@ -105,13 +105,15 @@ BOOL COpenCVwithMFC2Dlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-	img = imread("hodu5.jpg");
+	//img = imread("hodu5.jpg");
 
-	if (img.empty())
-	{
-		std::cerr << "Image load failed!" << std::endl;
-		return -1;
-	}
+	//if (img.empty())
+	//{
+	//	std::cerr << "Image load failed!" << std::endl;
+	//	return -1;
+	//}
+	
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -153,6 +155,13 @@ void COpenCVwithMFC2Dlg::OnPaint()
 	}
 	else
 	{
+		img = imread("school.png", IMREAD_UNCHANGED);
+
+		rectangle(img, Rect(50, 50, 100, 50), Scalar(0, 255, 0), 2);
+		CreateBitmapInfo(img.cols, img.rows, img.channels() * 8);
+
+		DrawImage();
+
 		CDialogEx::OnPaint();
 	}
 }
@@ -348,7 +357,12 @@ void COpenCVwithMFC2Dlg::OnBnClickedImgLoadBtn()
 		std::string strPath(pszString);
 
 		img = imread(strPath, IMREAD_UNCHANGED);
-
+		//cvtColor(img, img, COLOR_BGR2GRAY);
+		//
+		//line(img, Point(350, 350), Point(370, 50), Scalar(0, 0, 255));
+		//line(img, Point(250, 70), Point(350, 120), Scalar(255, 0, 255), 1, LINE_8);
+		//drawMarker(img, Point(350, 350), Scalar(0, 0, 255), MARKER_CROSS);
+		rectangle(img, Rect(50, 50, 100, 50), Scalar(0, 255, 0), 2);
 		CreateBitmapInfo(img.cols, img.rows, img.channels() * 8);
 
 		DrawImage();
