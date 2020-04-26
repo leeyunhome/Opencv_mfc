@@ -45,4 +45,7 @@ review and release build
 딥러닝을 이용한 얼굴 검출 방법 테스트  
 https://github.com/leeyunhome/CV_test
 
+[OpenCV] Mat 이미지를 Picture Control에 출력하기
+![draw_rectangle](https://user-images.githubusercontent.com/59910227/80303435-469d4e00-87eb-11ea-8f4e-799f4402514b.png)
+
 감사합니다.
